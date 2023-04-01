@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.snow.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden;}
+.ql-container {
+    // min-height: 10rem;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ql-editor {
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+  }
+.button{
+  font-family: Roboto, "Helvetica Neue", sans-serif; ;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  img{
+    max-width: 18px;
+    margin-right: 5px;
+  }
+}
+.button:disabled{
+  opacity: .3;
+  pointer-events: none;
+}

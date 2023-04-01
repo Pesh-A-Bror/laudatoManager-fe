@@ -1,0 +1,77 @@
+<navbar> </navbar>
+<div class="generalContainer">
+  <div id="searchInput">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Cerca paragrafo</mat-label>
+        <input matInput formControlName="name" [matAutocomplete]="auto" />
+      </mat-form-field>
+      <mat-autocomplete
+        [displayWith]="getOptionText"
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectionChanged($event)"
+      >
+        <mat-option disabled class="loading" *ngIf="loading">
+          <mat-spinner diameter="25"></mat-spinner>
+        </mat-option>
+        <mat-option disabled *ngIf="(ats$ | async)?.length === 0 && !loading">
+          Nessun paragrafo trovato
+        </mat-option>
+        <mat-option *ngFor="let act of ats$ | async" [value]="act">
+          {{ act.title }}
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+  </div>
+
+  <div class="mainActContainer">
+    <div class="foliario"><div *ngFor="let d of documents; let i = index">
+    <span>{{ i + 1 }} - {{ d.title }}</span
+    ><input matInput [(ngModel)]="d.text"  readonly/>
+  </div></div>
+    <div class="difesa">
+      <div class="actHeader">
+        <div class="title">Componi nuova difesa</div>
+        <button
+          (click)="downloadWord()"
+          [disabled]="paragraphsNumber.length === 0"
+          class="button"
+        >
+          <img src="../../../assets/icons/download.png" alt="downlaod atto" />
+          download
+        </button>
+      </div>
+      <div class="a4">
+        <form [formGroup]="form">
+          <div formArrayName="paragraphs">
+          <div
+            cdkDropList
+            [cdkDropListData]="paragraphs().controls"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              *ngFor="let paragraph of paragraphs().controls; let i = index"
+              [formGroupName]="i"
+              [cdkDragData]="paragraph"
+              cdkDrag
+            >
+              <quill-editor formControlName="paragraph"> </quill-editor>
+              <!--(click)="removeParagraph(i)"-->
+              <button
+                class="btn btn-danger"
+                cdkDragHandle
+              >
+                Sposta
+              </button>
+            </div>
+          </div>
+        </div>
+        </form>
+        
+      </div>
+    </div>
+    <div class="conclusioni"></div>
+  </div>
+  
+</div>

@@ -1,0 +1,40 @@
+.generalContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  flex-direction: column;
+  #searchInput{
+    max-width: 200px;
+  }
+  .mainActContainer {
+    display: flex;
+    flex-direction: column;
+    .difesa {
+      width: 793.7007874px;
+      min-height: 1122.519685px;
+      display: flex;
+      flex-direction: column;
+      .actHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+      .a4 {
+        width: 100%;
+        height: 100%;
+        border-radius: 26px;
+        border: 1px solid black;
+        overflow-x: hidden;
+        overflow-y: auto;
+        &::ng-deep quill-editor{
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+
+<div class="loginPageContainer">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm.value)" class="loginContainer">
+        <h2>Laudato Manager</h2>
+        <mat-form-field appearance="fill">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="username">
+          <mat-hint *ngIf="userNameAutofilled">Username</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-hint *ngIf="passwordAutofilled">Autofilled!</mat-hint>
+        </mat-form-field>
+        <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+</div>
